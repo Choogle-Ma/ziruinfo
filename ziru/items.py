@@ -10,5 +10,22 @@ import scrapy
 
 class ZiruItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    return_code = scrapy.Field()
+    message = scrapy.Field()
+    data = scrapy.Field()
+
+
+class CommunityItem(scrapy.Item):
+    code = scrapy.Field()
+    count = scrapy.Field()
+    name = scrapy.Field()
+    type = scrapy.Field()
+    building_state = scrapy.Field()
+    sell_price = scrapy.Field()
+    longitude = scrapy.Field()
+    latitude = scrapy.Field()
+    distance = scrapy.Field()
+    duration = scrapy.Field()
+    icon = scrapy.Field()
+
+
