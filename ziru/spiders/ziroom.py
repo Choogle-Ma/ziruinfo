@@ -33,8 +33,8 @@ class ZiroomSpider(scrapy.Spider):
         delta_lng = 0.008961
         delta_lat = 0.003293
 
-        lng_t = (lng_west + lng_east)/2
-        # lng_t = lng_west
+        # lng_t = (lng_west + lng_east)/2
+        lng_t = lng_west
         zoom = 18
 
         while lng_t < lng_east:
@@ -42,8 +42,8 @@ class ZiroomSpider(scrapy.Spider):
             lng_t_max = lng_t + delta_lng
             clng_t = (lng_t_min + lng_t_max) / 2
 
-            lat_t = (lat_south + lat_north)/2
-            # lat_t = lat_south
+            # lat_t = (lat_south + lat_north)/2
+            lat_t = lat_south
             while lat_t < lat_north:
                 lat_t_min = lat_t
                 lat_t_max = lat_t + delta_lat
