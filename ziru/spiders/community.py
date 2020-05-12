@@ -12,7 +12,7 @@ class ZiroomSpider(scrapy.Spider):
         url_root = "http://www.ziroom.com/xiaoqu/"
         requests = []
 
-        with open(r'/home/mahj/PycharmProjects/ziruinfo/ziru/files/community.json', 'r') as f:
+        with open(r'ziru/files/community.json', 'r') as f:
             data = json.load(f)
 
         communities = {}
