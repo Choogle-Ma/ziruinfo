@@ -2,8 +2,6 @@
 import scrapy, logging, json
 from ziru.items import ZiruItem, CommunityItem
 
-hosturl = "https://weread.qq.com/"
-
 
 class ZiroomSpider(scrapy.Spider):
     name = "ziroom"

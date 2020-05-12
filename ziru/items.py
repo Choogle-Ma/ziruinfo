@@ -30,22 +30,19 @@ class CommunityItem(scrapy.Item):
 
 
 class CommunityInfoItem(scrapy.Item):
-    desc = scrapy.Field()
+    # desc = scrapy.Field()
+    id = scrapy.Field()
+    name = scrapy.Field()
     build_time = scrapy.Field()
     build_type = scrapy.Field()
     build_area = scrapy.Field()
     landscaping = scrapy.Field()
     FAR = scrapy.Field()
     is_noise = scrapy.Field()
-    guard = scrapy.Field()
-    streetlight = scrapy.Field()
-    is_sealed = scrapy.Field()
-    car_divided = scrapy.Field()
-    gate_lock = scrapy.Field()
-    gate_monitor = scrapy.Field()
-    gate_monitor = scrapy.Field()
-    gate_monitor = scrapy.Field()
-    gate_monitor = scrapy.Field()
-    gate_monitor = scrapy.Field()
-    gate_monitor = scrapy.Field()
+
+    park_v = scrapy.Field()
+    park_month = scrapy.Field()
+    park_year = scrapy.Field()
+    is_rent = scrapy.Field()
+    has_power = scrapy.Field()
 
