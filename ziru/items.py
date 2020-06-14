@@ -46,3 +46,10 @@ class CommunityInfoItem(scrapy.Item):
     is_rent = scrapy.Field()
     has_power = scrapy.Field()
 
+
+class RentItem(scrapy.Item):
+    code = scrapy.Field()
+    message = scrapy.Field()
+    rooms = scrapy.Field()
+    total = scrapy.Field()
+    pages = scrapy.Field()
