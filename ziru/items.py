@@ -48,6 +48,7 @@ class CommunityInfoItem(scrapy.Item):
 
 
 class RentItem(scrapy.Item):
+
     code = scrapy.Field()
     message = scrapy.Field()
     rooms = scrapy.Field()

@@ -8,7 +8,7 @@ class ZiroomSpider(scrapy.Spider):
     allowed_domains = ["ziroom.com"]
 
     def start_requests(self):
-        url_sample = "http://www.ziroom.com/map/room/list?min_lng=116.206912&max_lng=116.216398&min_lat=39.947775&max_lat=39.949351&clng=116.211655&clat=39.948563&zoom=18"
+        url_sample = "http://www.ziroom.com/map/room/list?min_lng=116.444631&max_lng=116.454118&min_lat=39.944929&max_lat=39.948635&clng=116.449374&clat=39.946782&zoom=18&p=1&type=11"
         url_root = "http://www.ziroom.com/map/room/list?"
         requests = []
 
@@ -54,10 +54,11 @@ class ZiroomSpider(scrapy.Spider):
                                          meta={'url_root': url_root, 'lng_t_min': lng_t_min, 'lng_t_max': lng_t_max,
                                                'lat_t_min': lat_t_min, 'lat_t_max': lat_t_max, 'clng_t': clng_t,
                                                'clat_t': clat_t, 'zoom': zoom})
-                yield request
+
                 # requests.append(request)
 
                 lat_t = lat_t_max
+                yield request
 
             lng_t = lng_t_max
 
@@ -68,8 +69,12 @@ class ZiroomSpider(scrapy.Spider):
         item = RentItem()
 
         data = json.loads(response.text)
-        item['return_code'] = data['code']
+        logging.info("BASE:" + response.text)
+
+        item['code'] = data['code']
         item['message'] = data['message']
+
+
         item['rooms'] = data['data']['rooms']
         item['total'] = data['data']['total']
         item['pages'] = data['data']['pages']
@@ -85,7 +90,7 @@ class ZiroomSpider(scrapy.Spider):
 
         if item['pages'] > 1:
             for i in range(2, item['pages']+1):
-                url_t = url_root + "min_lng=%f&max_lng=%f&min_lat=%f&max_lat=%f&clng=%f&clat=%f&zoom=%d&p=%d&area=40,100&type=11" % \
+                url_t = url_t + "min_lng=%f&max_lng=%f&min_lat=%f&max_lat=%f&clng=%f&clat=%f&zoom=%d&p=%d&area=40,100&type=11" % \
                         (lng_t_min, lng_t_max, lat_t_min, lat_t_max, clng_t, clat_t, zoom, i)
 
                 request = scrapy.Request(url=url_t, callback=self.parse_more)
@@ -99,7 +104,9 @@ class ZiroomSpider(scrapy.Spider):
         item = RentItem()
 
         data = json.loads(response.text)
-        item['return_code'] = data['code']
+        logging.info("MORE:" + response.text)
+
+        item['code'] = data['code']
         item['message'] = data['message']
         item['rooms'] = data['data']['rooms']
         item['total'] = data['data']['total']
